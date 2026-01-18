@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News24x7 | {% block title %} {% endblock title %}</title>
+    <link rel="shortcut icon" href="{% static "svgviewer-output.svg" %}" type="image/x-icon">
     {% block meta %} {% endblock meta %}
     <!-- links and cdn   -->
     <!-- Bootstrap CSS -->
@@ -38,6 +40,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
      <!-- end links and cdn -->
+      <link rel="stylesheet" href="{% static 'css/index.css' %}">
       {% block styles %} {% endblock styles %}
 
 

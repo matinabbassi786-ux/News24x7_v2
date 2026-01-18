@@ -1,19 +1,3769 @@
-{% extends "main.html" %}
 {% load static %}
-{% block title %} Home {% endblock title %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News24x7</title>
+    <link rel="shortcut icon" href="{% static 'svgviewer-output.svg' %}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- slick-carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Slick CSS -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
 
-{% block meta %}
-<meta name="description" content="Stay updated with the latest news from around the world on News24x7.">
-<meta name="keywords" content="news, latest news, world news, breaking news, headlines">
-<meta name="author" content="News24x7"> 
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock meta %}
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<!-- jQuery (REQUIRED) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-{% block styles %} 
-{% endblock styles %}
+<!-- Slick JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+:root {
+    --primary-dark: #ffffff;
+    --secondary-dark: #f8f9fa;
+    --tertiary-dark: #e9ecef;
+    --primary-light: #000000;
+    --secondary-light: #212529;
+    --accent-blue: #007bff;
+    --accent-teal: #17a2b8;
+    --accent-indigo: #6610f2;
+    --accent-cyan: #20c997;
+    --accent-emerald: #28a745;
+    --accent-amber: #fd7e14;
+    --accent-rose: #dc3545;
+    --border-color: #dee2e6;
+    --gradient-primary: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+    --gradient-secondary: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
+    --gradient-accent: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+        
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+    }
+        
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: var(--primary-dark);
+        color: var(--primary-light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Professional Header */
+    .app-header {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.25rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: var(--shadow-sm);
+        }
+        
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        }
+        
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        }
+        
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 1.4rem;
+        box-shadow: var(--shadow-md);
+        }
+        
+    .logo-text {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        }
+        
+        /* Main Content */
+    .main-content {
+        padding: 2.5rem 0 8rem;
+        min-height: 100vh;
+    }
+        
+    .content-card {
+        background: var(--secondary-dark);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+        
+    .content-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+    }
+        
+        .content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-blue);
+        }
+        
+        .content-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary-light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        /* News Cards */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .news-card {
+            background: var(--tertiary-dark);
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-teal);
+        }
+        
+        .news-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(0, 123, 255, 0.15);
+            color: var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary-light);
+            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .news-excerpt {
+            font-size: 0.95rem;
+            color: var(--secondary-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 0.85rem;
+            color: var(--secondary-light);
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 0.75rem 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 0.5rem;
+            max-width: 100%;
+            margin: 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.25rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            margin: 0 0.25rem;
+        }
+        
+        .nav-item.active {
+            background: rgba(0, 123, 255, 0.15);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+        }
+        
+        .nav-item.active .nav-icon {
+            color: var(--accent-blue);
+            transform: translateY(-4px) scale(1.1);
+        }
+        
+        .nav-item.active .nav-label {
+            color: var(--accent-blue);
+            opacity: 1;
+            font-weight: 600;
+        }
+        
+        .nav-icon {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+            color: var(--secondary-light);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--secondary-light);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            letter-spacing: 0.3px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 4px;
+            right: 47%;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid var(--primary-dark);
+            box-shadow: var(--shadow-sm);
+            transform: translateX(50%);
+        }
+        
+        .profile-img-nav {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-teal);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 6px;
+        }
+        
+        .nav-item.active .profile-img-nav {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Professional Modals */
+        .professional-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 20px;
+        }
+        
+        .modal-content-professional {
+            background: var(--secondary-dark);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 520px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        @keyframes modalSlideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-header-professional {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(248, 249, 250, 0.8);
+        }
+        
+        .modal-title-professional {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .modal-title-icon {
+            color: var(--accent-teal);
+            font-size: 1.4rem;
+        }
+        
+        .modal-close-btn {
+            background: var(--tertiary-dark);
+            border: none;
+            color: var(--secondary-light);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+        }
+        
+        .modal-close-btn:hover {
+            background: var(--accent-rose);
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body-professional {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        /* Custom Scrollbar */
+        .modal-body-professional::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-body-professional::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+            border-radius: 4px;
+        }
+        
+        .modal-body-professional::-webkit-scrollbar-thumb {
+            background: var(--tertiary-dark);
+            border-radius: 4px;
+        }
+        
+        .modal-body-professional::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-teal);
+        }
+        
+        /* Tabs Navigation */
+        .tabs-navigation {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .tabs-navigation::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            color: var(--secondary-light);
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .tab-btn.active {
+            color: var(--accent-teal);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* List Items */
+        .list-item-professional {
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            background: var(--primary-dark);
+        }
+        
+        .list-item-professional:hover {
+            background: var(--tertiary-dark);
+            border-color: var(--border-color);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .list-item-professional:last-child {
+            margin-bottom: 0;
+        }
+        
+        .item-icon-professional {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .item-content-professional {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .item-title-professional {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .item-desc-professional {
+            font-size: 0.95rem;
+            color: var(--secondary-light);
+            line-height: 1.5;
+        }
+        
+        .item-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-teal);
+        }
+        
+        /* Action Buttons */
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-follow {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-follow:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-following {
+            background: var(--tertiary-dark);
+            color: var(--secondary-light);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-message {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-message:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Search Components */
+        .search-container-professional {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-input-professional {
+            width: 100%;
+            padding: 1.25rem 1.25rem 1.25rem 4rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            color: var(--primary-light);
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .search-input-professional:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.15);
+        }
+        
+        .search-icon-professional {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-teal);
+            font-size: 1.2rem;
+        }
+        
+        /* News Search Components */
+        .news-search-result {
+            padding: 1.5rem;
+            border-radius: 18px;
+            margin-bottom: 1.25rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .news-search-result:hover {
+            background: var(--tertiary-dark);
+            border-color: var(--accent-teal);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .news-category-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(23, 162, 184, 0.15);
+            color: var(--accent-teal);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-title-search {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary-light);
+            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .news-excerpt {
+            font-size: 0.95rem;
+            color: var(--secondary-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .news-search-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--accent-teal);
+        }
+        
+        .search-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            color: var(--secondary-light);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gradient-secondary);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Notification Items */
+        .notification-item {
+            padding: 1.5rem;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            background: var(--primary-dark);
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-item:hover {
+            background: var(--tertiary-dark);
+            transform: translateX(4px);
+        }
+        
+        .notification-item.unread {
+            border-left-color: var(--accent-teal);
+            background: rgba(23, 162, 184, 0.08);
+        }
+        
+        .notification-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-time {
+            font-size: 0.85rem;
+            color: var(--accent-teal);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        /* Profile Section */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: var(--primary-dark);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-teal);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary-light);
+            margin-top: 4px;
+        }
+        
+        /* Language Options */
+        .language-option-professional {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            background: var(--primary-dark);
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .language-option-professional:hover {
+            background: var(--tertiary-dark);
+            border-color: var(--border-color);
+            transform: translateX(8px);
+        }
+        
+        .language-option-professional.active {
+            background: var(--tertiary-dark);
+            border-color: var(--accent-teal);
+        }
+        
+        .language-flag-professional {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 1.25rem;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .language-name-professional {
+            flex: 1;
+            font-weight: 600;
+            color: var(--primary-light);
+            font-size: 1.05rem;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-item {
+                padding: 0.5rem 0.5rem;
+                margin: 0 0.5rem;
+            }
+            
+            .nav-icon {
+                font-size: 1.4rem;
+            }
+            
+            .nav-label {
+                font-size: 0.8rem;
+            }
+            
+            .profile-img-nav {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .modal-content-professional {
+                max-width: 600px;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .modal-content-professional {
+                max-height: 90vh;
+            }
+            
+            .modal-header-professional {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+            
+            .modal-body-professional {
+                padding: 1.5rem;
+            }
+            
+            .list-item-professional {
+                padding: 1.25rem;
+            }
+            
+            .nav-container {
+                padding: 0 0.25rem;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 0.125rem;
+                margin: 0 0.125rem;
+            }
+            
+            .nav-icon {
+                font-size: 1.2rem;
+            }
+            
+            .nav-label {
+                font-size: 0.7rem;
+            }
+            
+            .notification-badge {
+                top: 2px;
+                right: 20%;
+                width: 16px;
+                height: 16px;
+                font-size: 0.6rem;
+            }
+            
+            .profile-img-nav {
+                width: 26px;
+                height: 26px;
+            }
+            
+            .content-card {
+                padding: 1.75rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for list items */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-list-item {
+            animation: slideInRight 0.5s ease;
+            animation-fill-mode: both;
+        }
+        
+        .animate-list-item:nth-child(1) { animation-delay: 0.1s; }
+        .animate-list-item:nth-child(2) { animation-delay: 0.2s; }
+        .animate-list-item:nth-child(3) { animation-delay: 0.3s; }
+        .animate-list-item:nth-child(4) { animation-delay: 0.4s; }
+        .animate-list-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+    <style>
+        .top-nav {
+  
+  top: 0;
+  z-index: 1100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+}
 
-{% block body %}
-<!-- navbar here -->
+/* LOGO LEFT */
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.6rem 1rem 0.4rem;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* SCROLLABLE TOPICS BELOW */
+.topics-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 0.5rem 0.75rem 0.75rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.topics-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* TOPIC CHIP */
+.topic-chip {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: var(--tertiary-dark);
+  border: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.topic-chip i {
+  color: var(--accent-teal);
+}
+
+.topic-chip.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.topic-chip.active i {
+  color: #fff;
+}
+
+    </style>
+    <style>
+        .today-news-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+    </style>
+<style>
+    /* ===== Loader Overlay ===== */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== Loader Animation ===== */
+.loader {
+  width: 80px;
+  aspect-ratio: 1;
+  color: #514b82;
+  background: repeating-conic-gradient(from -47deg,#0000 0deg, currentColor 1deg 91deg,#0000 94deg 180deg);
+  display: flex;
+  animation: l12-0 2s infinite linear;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  flex: 1;
+  background: currentColor;
+  clip-path: polygon(0 0,100% 50%, 0 100%);
+  animation: l12 0.5s infinite alternate;
+  transform-origin: bottom left;
+}
+.loader::after {
+  clip-path: polygon(100% 0,100% 100%,0 50%);
+  transform-origin: top right;
+}
+@keyframes l12-0 {
+    0%,49.9% {transform:scaleX( 1)}
+    50%,100% {transform:scaleX(-1)}
+}
+@keyframes l12 {
+    0%, 20%  {transform:rotate(0deg)}
+    80%,100% {transform:rotate(-270deg)}
+}
+</style>
+</head>
+<!-- Loader -->
+<div id="loading">
+  <div class="loader"></div>
+</div>
+<body>
+    
+<header class="top-nav">
+  <!-- Logo Row -->
+  <div class="logo-row">
+   <a href="/">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="225" height="">
+  <defs>
+    <!-- Futuristic gradient -->
+    <linearGradient id="futurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007CF0"/>
+      <stop offset="50%" style="stop-color:#00DFD8"/>
+      <stop offset="100%" style="stop-color:#7928CA"/>
+    </linearGradient>
+    
+    <!-- Neon effect -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- World Globe Icon -->
+  <g transform="translate(30, 20)">
+    <!-- Globe outer circle -->
+    <circle cx="30" cy="40" r="35" fill="none" stroke="url(#futurGrad)" stroke-width="2.5" opacity="0.9"/>
+    
+    <!-- Globe grid lines -->
+    <g stroke="url(#futurGrad)" stroke-width="1" opacity="0.7">
+      <!-- Longitude lines -->
+      <path d="M30,5 Q50,40 30,75" fill="none"/>
+      <path d="M30,5 Q10,40 30,75" fill="none"/>
+      <!-- Latitude lines -->
+      <ellipse cx="30" cy="40" rx="20" ry="35" fill="none"/>
+      <ellipse cx="30" cy="40" rx="12" ry="25" fill="none"/>
+    </g>
+    
+    <!-- Continents (simplified) -->
+    <g fill="url(#futurGrad)" opacity="0.6">
+      <!-- Americas -->
+      <path d="M15,25 Q20,15 25,20 Q30,25 28,35 Q25,40 20,35 Q15,30 15,25" />
+      <!-- Europe/Africa -->
+      <path d="M40,25 Q45,20 50,25 Q48,35 45,40 Q40,45 38,35 Q37,30 40,25" />
+      <!-- Asia/Australia -->
+      <path d="M45,45 Q50,50 55,55 Q52,60 48,58 Q45,55 43,50 Q42,47 45,45" />
+    </g>
+    
+    <!-- Data network overlay -->
+    <g stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8">
+      <circle cx="30" cy="40" r="25">
+        <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="30" cy="40" r="15">
+        <animate attributeName="r" values="15;18;15" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+    </g>
+    
+    <!-- Data points moving around globe -->
+    <circle cx="30" cy="15" r="3" fill="#FF0080">
+      <animateTransform attributeName="transform" type="rotate" from="0 30 40" to="360 30 40" 
+                       dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="45" cy="40" r="3" fill="#00DFD8">
+      <animateTransform attributeName="transform" type="rotate" from="120 30 40" to="480 30 40" 
+                       dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="65" r="3" fill="#7928CA">
+      <animateTransform attributeName="transform" type="rotate" from="240 30 40" to="600 30 40" 
+                       dur="10s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- 24/7 indicator in center -->
+    <circle cx="30" cy="40" r="12" fill="#FFFFFF" opacity="0.9"/>
+    <text x="30" y="44" text-anchor="middle" font-family="'Inter', sans-serif" 
+          font-size="8" font-weight="700" fill="url(#futurGrad)">24/7</text>
+  </g>
+  
+  <!-- Typography (keep original) -->
+  <g transform="translate(80, 0)">
+    <!-- Main text with depth -->
+    <text x="0" y="52" font-family="'Montserrat', 'Inter', sans-serif" 
+          font-size="46" font-weight="800" letter-spacing="-1" fill="#000">
+      News24x7
+      <animate attributeName="fill" values="#000;#111;#000" dur="10s" repeatCount="indefinite"/>
+    </text>
+    
+    <!-- Glow effect -->
+    <text x="0" y="52" font-family="'Montserrat', 'Inter', sans-serif" 
+          font-size="46" font-weight="800" letter-spacing="-1" fill="url(#futurGrad)" 
+          opacity="0.3" filter="url(#neonGlow)">News24x7</text>
+    
+    <!-- Data stream visualization -->
+    <g transform="translate(0, 70)">
+      <rect x="0" y="0" width="280" height="2" fill="#E5E7EB"/>
+      <!-- Data points -->
+      <circle cx="30" cy="0" r="3" fill="#007CF0">
+        <animate attributeName="cx" values="30;280;30" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="100" cy="0" r="2" fill="#00DFD8">
+        <animate attributeName="cx" values="100;280;100" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="180" cy="0" r="2" fill="#7928CA">
+        <animate attributeName="cx" values="180;280;180" dur="7s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Satellite dish element (keep original) -->
+  <g transform="translate(340, 40)">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="url(#futurGrad)" stroke-width="2"/>
+    <path d="M-12,0 A12,12 0 0,1 12,0 L0,20 Z" fill="url(#futurGrad)" opacity="0.7"/>
+    
+    <!-- Signal waves -->
+    <g>
+      <circle cx="0" cy="0" r="25" fill="none" stroke="url(#futurGrad)" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" values="25;30;25" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="0" r="20" fill="none" stroke="url(#futurGrad)" stroke-width="1" opacity="0.5">
+        <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+    </g>
+  </g>
+</svg>
+   </a>
+  </div>
+
+  <!-- Topics Row -->
+  <div class="topics-scroll">
+    <div class="topic-chip active"><i class="fas fa-fire"></i> Trending</div>
+    <div class="topic-chip"><i class="fas fa-microchip"></i> Tech</div>
+    <div class="topic-chip"><i class="fas fa-chart-line"></i> Business</div>
+    <div class="topic-chip"><i class="fas fa-globe"></i> Politics</div>
+    <div class="topic-chip"><i class="fas fa-leaf"></i> Climate</div>
+    <div class="topic-chip"><i class="fas fa-heartbeat"></i> Health</div>
+    <div class="topic-chip"><i class="fas fa-atom"></i> Science</div>
+  </div>
+
+</header>
+<!-- 2601 -->
+ <!-- Trending News   -->
+  <style>
+    .featured-slide {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.featured-slide img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+/* TOPIC TAG */
+.topic-tag {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+
+/* TITLE */
+.slide-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* DESCRIPTION */
+.slide-desc {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+/* META */
+.slide-meta {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+/* JOURNALIST TAG */
+.journalist-tag {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* BOOKMARK BUTTON */
+.bookmark-btn {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(54, 33, 33, 0.2);
+  color: #fff;
+  cursor: pointer;
+}
+.bookmark-btn.active {
+  background: var(--accent-blue);
+}
+a{
+    text-decoration: none;
+    color: None;
+}
+  </style>
+
+  <main>
+
+      <section title="TrendingNews"  >
+          <div class="container-fluid  mt-5 pt-2  mb-5 ">
+              <div class="row justify-content-center">
+                  <div class="col-11 ">
+                      
+            <div class="content-card">
+                <h2 class="section-title"> Trending News</h2>
+                
+                <div class="featured-slider">
+                    
+                    <!-- SLIDE -->
+                    <div class="featured-slide  orbit orbit-left">
+                        <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72" />
+                        
+                        <div class="slide-overlay">
+                      <!-- TOPIC TAG -->
+                      <a href="#" class="topic-tag">Technology</a>
+                      <a href="">
+                          
+                          <h3 class="slide-title text-white">AI Is Transforming the World</h3>
+                          <p class="slide-desc text-white">
+                              Artificial Intelligence is reshaping healthcare, finance, and automation.
+                            </p>
+                        </a>
+                        
+                        <div class="slide-meta">
+                            <!-- JOURNALIST TAG -->
+                            <a href="#" class="journalist-tag">
+                                <i class="fas fa-user"></i> Alex Morgan
+                            </a>
+                            
+                            <span><i class="fas fa-heart"></i> 1.2K</span>
+                            <span><i class="fas fa-eye"></i> 18.5K</span>
+                            
+                            <!-- BOOKMARK BUTTON -->
+                            <button class="bookmark-btn" aria-label="Bookmark">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+</div>
+</div>
+</div>
+
+<!-- SLIDE -->
+<div class="featured-slide orbit orbit-left ">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" />
+    
+    <div class="slide-overlay">
+        <a href="#" class="topic-tag">Business</a>
+        
+        <h3 class="slide-title">Markets React to New Policies</h3>
+        <p class="slide-desc">
+                Investors respond as governments announce major reforms.
+            </p>
+            
+            <div class="slide-meta">
+                <a href="#" class="journalist-tag">
+                    <i class="fas fa-user"></i> Sarah Chen
+                </a>
+                
+                <span><i class="fas fa-heart"></i> 980</span>
+                <span><i class="fas fa-eye"></i> 12.1K</span>
+                
+                <button class="bookmark-btn">
+                    <i class="far fa-bookmark"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</div>
+</div></div></div>
+</section>
+
+
+
+<!-- A  -->
+ <!-- Today News -->
+  <style>
+    .friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--tertiary-dark);
+  border: 1px solid var(--border-color);
+  transition: 0.25s ease;
+}
+
+.friend-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.friend-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-info {
+  flex: 1;
+}
+
+.friend-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.friend-role {
+  font-size: 0.8rem;
+  color: var(--secondary-light);
+}
+
+  </style>
+  <section title="TodayNews">
+    <div class="container-fluid  mt-5 pt-2  mb-5 ">
+              <div class="row justify-content-center">
+                  <div class="col-11 ">
+
+
+      <div class="container-fluid my-5">
+          <div class="row g-4">
+              
+              <!-- LEFT : TODAY NEWS -->
+              <div class="col-lg-8">
+                  <div class="content-card ">
+                      
+                      <h2 class="section-title">Today News</h2>
+                      
+                      <!-- NEWS LIST -->
+                      <div class="d-flex flex-column gap-4">
+                          
+                          <!-- CARD 1 -->
+          <div class="news-card orbit orbit-left">
+              <div class="row g-3 align-items-center">
+                  
+                  <!-- IMAGE LEFT -->
+                  <div class="col-4">
+                       <a href="">
+                           <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72"
+                           class="today-news-img"
+                           alt="News">
+                    </a>
+                </div>
+                
+                <!-- CONTENT RIGHT -->
+                <div class="col-8">
+                    <a href="">
+                        <span class="topic-tag">Technology</span>
+                    </a>
+                    <a href="" class="">
+                        
+                        <h4 class="news-title mt-2">
+                            AI Is Changing the World
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Artificial intelligence is impacting healthcare, finance,
+                            and automation globally.
+                        </p>
+                    </a>
+                    
+                    <div class="news-meta">
+                        <a href="">
+                            
+                            <span class="m-1 text-dark"><i class="fas fa-user"></i> Alex Morgan</span>
+                        </a>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.3K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 19.8K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- CARD 2 -->
+          <div class="news-card orbit orbit-left ">
+              <div class="row g-3 align-items-center">
+                  
+                  <div class="col-4">
+                      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                      class="today-news-img"
+                      alt="News">
+                    </div>
+                    
+                    <div class="col-8">
+                        <span class="topic-tag">Business</span>
+                        
+                        <h4 class="news-title mt-2">
+                            Markets React to New Policies
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Investors respond after major global policy changes.
+                        </p>
+                        
+                        <div class="news-meta">
+                            <span class="m-1" ><i class="fas fa-user"></i> Sarah Chen</span>
+                            <span class="m-1" ><i class="fas fa-heart"></i> 980</span>
+                            <span class="m-1" ><i class="fas fa-eye"></i> 12.1K</span>
+                            
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+        
+        <!-- CARD 3 -->
+        <div class="news-card orbit orbit-left ">
+            <div class="row g-3 align-items-center">
+                
+                <div class="col-4">
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7"
+                    class="today-news-img"
+                    alt="News">
+                </div>
+                
+                <div class="col-8">
+                    <span class="topic-tag">Health</span>
+                    
+                    <h4 class="news-title mt-2">
+                        Medical Breakthrough Announced
+                    </h4>
+                    
+                    <p class="news-excerpt">
+                        Scientists reveal promising new healthcare research.
+                    </p>
+                    
+                    <div class="news-meta">
+                        <span class="m-1" ><i class="fas fa-user"></i> Maria Lopez</span>
+                        <span class="m-1" ><i class="fas fa-heart"></i> 1.6K</span>
+                        <span class="m-1" ><i class="fas fa-eye"></i> 20.3K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+<!-- RIGHT : WEATHER  Friend Suggestions -->
+<div class="col-lg-4">
+    <div class="m-5 "></div>
+    <div class="content-card text-center orbit orbit-left ">
+        <h5 class="fw-bold mb-3">Weather</h5>
+        
+        <h6>New York</h6>
+        <i class="fas fa-cloud-sun fa-3x text-warning my-2"></i>
+        <h2 class="fw-bold">26°C</h2>
+        <p class="text-muted mb-0">Partly Cloudy</p>
+        
+    </div>
+    <div class="mt-5 pt-5">
+  <div class="content-card orbit orbit-left ">
+
+    <h5 class="fw-bold mb-3">Friend Suggestions</h5>
+
+    <div class="friends-list">
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786"
+             class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Emily Watson</div>
+          <div class="friend-role">Tech Enthusiast</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+             class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">David Kim</div>
+          <div class="friend-role">Market Analyst</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+             class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Sophia Brown</div>
+          <div class="friend-role">Health Blogger</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+             class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Michael Lee</div>
+          <div class="friend-role">Science Writer</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+</div></div></div>
+</section>
+
+
+<!-- B -->
+<style>
+    .showsha-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.showsha-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--tertiary-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  white-space: nowrap;
+}
+
+.showsha-tab.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.showsha-pane {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.showsha-pane.active {
+  display: block;
+}
+
+</style>
+
+<section title="Films">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11">
+
+
+
+<div class="container-fluid my-5">
+  <div class="content-card">
+
+    <!-- SECTION HEADING -->
+    <h2 class="section-title">Films</h2>
+
+    <!-- SUB SECTIONS -->
+    <div class="showsha-tabs mb-4">
+      <button class="showsha-tab active" data-target="bollywood">Bollywood</button>
+      <button class="showsha-tab" data-target="regional">Regional Cinema</button>
+      <button class="showsha-tab" data-target="ott">OTT</button>
+      <button class="showsha-tab" data-target="tv">TV</button>
+      <button class="showsha-tab" data-target="web">Web Stories</button>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="showsha-content">
+
+      <!-- BOLLYWOOD -->
+      <div class="showsha-pane active" id="bollywood">
+       <div class=" container-fluid ">
+        <div class=" row justify-content-evenly">
+            <!-- 1 body bollywood -->
+             <div class=" container-fluid  ">
+                <div class="row justify-content-evenly">
+
+                    <!-- CARD 1 -->
+                <div class="col-xl-5 mt-2 mb-2 orbit orbit-left">               
+                <!-- CARD -->
+<div class="showsha-news-card news-card" style="position:relative; overflow:hidden;">
+
+  <!-- IMAGE -->
+   <a href="">
+
+       <img class="rounded"
+       src="https://images.unsplash.com/photo-1517602302552-471fe67acf66"
+       alt="News Image"
+       style="width:100%; aspect-ratio:16/9; object-fit:cover;"
+       />
+    </a>
+
+  <!-- TOPIC TAG ON IMAGE (TOP LEFT) -->
+   <a href="">
+
+       <span
+       class="topic-tag"
+       style="
+      position:absolute;
+      top:10%;
+      left:10%;
+      z-index:2;
+      "
+  >
+  Bollywood
+</span>
+</a>
+
+  <!-- CARD BODY -->
+  <div class="showsha-news-body">
+    <a href="">
+000
+        <h5 class="news-title">
+            Star Kid Makes Grand Debut
+        </h5>
+        
+        <p class="news-excerpt">
+            The debut film is already creating strong buzz in the industry.
+        </p>
+    </a>
+
+    <div class="news-meta">
+                        <a href="">
+                            
+                            <span class="m-1 text-dark"><i class="fas fa-user"></i> Alex Morgan</span>
+                        </a>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.3K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 19.8K</span>
+                        
+                        <button class="bookmark-btn active">
+                            <i class="fa-bookmark fas"></i>
+                        </button>
+                    </div>
+  </div>
+</div>
+
+</div>          
+  <!-- CARD 1 -->
+
+  
+
+
+ </div>
+             </div>
+            <!-- 1 -->
+        </div>
+       </div>
+      </div>
+
+      <!-- REGIONAL -->
+      <div class="showsha-pane" id="regional">
+        <p class="news-excerpt">
+          Updates from South Indian cinema, Marathi, Bengali, Punjabi
+          and other regional film industries.
+        </p>
+      </div>
+
+      <!-- OTT -->
+      <div class="showsha-pane" id="ott">
+        <p class="news-excerpt">
+          New OTT releases, web series reviews, platform announcements
+          and streaming trends.
+        </p>
+      </div>
+
+      <!-- TV -->
+      <div class="showsha-pane" id="tv">
+        <p class="news-excerpt">
+          Television serial updates, reality shows, TRP reports
+          and celebrity appearances.
+        </p>
+      </div>
+
+      <!-- WEB STORIES -->
+      <div class="showsha-pane" id="web">
+        <p class="news-excerpt">
+          Visual web stories, photo galleries, short-form entertainment
+          content and viral moments.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+        </div></div></div>
+</section>
+<!--  -->
+<section title="politics">
+    <div class="container-fluid  mt-5 pt-2  mb-5 ">
+              <div class="row justify-content-center">
+                  <div class="col-11 ">
+
+
+      <div class="container-fluid my-5">
+          <div class="row g-4">
+              
+              <!-- LEFT : TODAY NEWS -->
+              <div class="col-lg-8">
+                  <div class="content-card">
+                      
+                      <h2 class="section-title">Politics</h2>
+                      
+                      <!-- NEWS LIST -->
+                      <div class="d-flex flex-column gap-4">
+                          
+                          <!-- CARD 1 -->
+          <div class="news-card">
+              <div class="row g-3 align-items-center orbit orbit-left">
+                  
+                  <!-- IMAGE LEFT -->
+                  <div class="col-4 ">
+                       <a href="">
+                           <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72" class="today-news-img" alt="News">
+                    </a>
+                </div>
+                
+                <!-- CONTENT RIGHT -->
+                <div class="col-8">
+                    <a href="">
+                        <span class="topic-tag">Technology</span>
+                    </a>
+                    <a href="" class="">
+                        
+                        <h4 class="news-title mt-2">
+                            AI Is Changing the World
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Artificial intelligence is impacting healthcare, finance,
+                            and automation globally.
+                        </p>
+                    </a>
+                    
+                    <div class="news-meta">
+                        <a href="">
+                            
+                            <span class="m-1 text-dark"><i class="fas fa-user"></i> Alex Morgan</span>
+                        </a>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.3K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 19.8K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- CARD 2 -->
+          <div class="news-card orbit orbit-left ">
+              <div class="row g-3 align-items-center">
+                  
+                  <div class="col-4">
+                      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="today-news-img" alt="News">
+                    </div>
+                    
+                    <div class="col-8">
+                        <span class="topic-tag">Business</span>
+                        
+                        <h4 class="news-title mt-2">
+                            Markets React to New Policies
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Investors respond after major global policy changes.
+                        </p>
+                        
+                        <div class="news-meta">
+                            <span class="m-1"><i class="fas fa-user"></i> Sarah Chen</span>
+                            <span class="m-1"><i class="fas fa-heart"></i> 980</span>
+                            <span class="m-1"><i class="fas fa-eye"></i> 12.1K</span>
+                            
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+        
+        <!-- CARD 3 -->
+        <div class="news-card orbit orbit-left ">
+            <div class="row g-3 align-items-center">
+                
+                <div class="col-4">
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7" class="today-news-img" alt="News">
+                </div>
+                
+                <div class="col-8">
+                    <span class="topic-tag">Health</span>
+                    
+                    <h4 class="news-title mt-2">
+                        Medical Breakthrough Announced
+                    </h4>
+                    
+                    <p class="news-excerpt">
+                        Scientists reveal promising new healthcare research.
+                    </p>
+                    
+                    <div class="news-meta">
+                        <span class="m-1"><i class="fas fa-user"></i> Maria Lopez</span>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.6K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 20.3K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+<!-- RIGHT LIVE List -->
+<div class="col-lg-4">
+    <div class="m-5 "></div>
+    <!-- NEWS CARD -->
+     <a href="">
+
+     
+<div class="news-card pb-0 mb-0 orbit orbit-left" data-live="true" style="position:relative; border-radius:16px; overflow:hidden;">
+
+  <!-- IF LIVE = TRUE → SHOW VIDEO -->
+  <video
+    class="live-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    style="width:100%; aspect-ratio:16/9; object-fit:cover;"
+  >
+    <source src="live-news.mp4" type="video/mp4">
+  </video>
+
+  <!-- IF NOT LIVE → USE IMAGE (REMOVE VIDEO TAG ABOVE, UNCOMMENT IMAGE) -->
+  <!--
+  <img
+    src="news-image.jpg"
+    style="width:100%; aspect-ratio:16/9; object-fit:cover;"
+  />
+  -->
+
+  <!-- LIVE BADGE -->
+  <span
+    class="live-badge"
+    style="
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:#e10600;
+      color:#fff;
+      padding:4px 10px;
+      font-size:0.75rem;
+      font-weight:700;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    "
+  >
+    <span style="width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 1s infinite;"></span>
+    LIVE
+  </span>
+
+  <!-- CARD BODY -->
+  <div class="news-body orbit orbit-left pb-0" style="padding:14px;">
+    <h5 class="news-title">Breaking News Live Update</h5>
+    <p class="news-excerpt">
+      Watch live updates as the situation unfolds in real time.
+    </p>
+
+    
+  </div>
+</div>
+</a>
+<!-- OPTIONAL PULSE ANIMATION -->
+<style>
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+</style>
+
+<div class="m-5 "></div>
+
+<!-- list news -->
+    <!-- SECTION : TITLE-ONLY LIST GROUP -->
+<section class="container-fluid my-4 orbit orbit-left">
+  <div class="content-card">
+
+    <h3 class="section-title mb-3">Latest Headlines</h3>
+
+    <ul class="title-list">
+      <li class=" mt-2 title-list-item"><a href="" class="text-dark">Parliament Session Live Updates </a></li>
+      <li class=" mt-2 title-list-item">New Film Trailer Released Today</li>
+      <li class=" mt-2 title-list-item">Top OTT Shows to Watch This Weekend</li>
+      <li class=" mt-2 title-list-item">AI Startup Raises $50 Million Funding</li>
+      <li class=" mt-2 title-list-item">Stock Markets End on a High Note</li>
+    </ul>
+
+  </div>
+</section>
+<style>
+    /* TITLE-ONLY LIST GROUP */
+.title-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--tertiary-dark);
+}
+
+.title-list-item {
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.title-list-item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.title-list-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+</style>
+</div>
+
+</div>
+
+</div>
+</div>
+</div></div></div>
+</section>
+<!--  -->
+<style>
+    /* SLIDER SPACING */
+.viral-slider .slick-slide {
+  padding: 8px;
+}
+
+/* CARD */
+.viral-card {
+  background: var(--primary-dark);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: 0.3s ease;
+  height: 100%;
+}
+
+.viral-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* IMAGE */
+.viral-img {
+  position: relative;
+}
+
+.viral-img img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+/* BADGE */
+.viral-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--gradient-primary);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* BODY */
+.viral-body {
+  padding: 12px 14px 14px;
+}
+
+.viral-body h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+/* META */
+.viral-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--secondary-light);
+}
+
+</style>
+<section title="Viral">
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <div class="content-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h2 class="section-title mb-0">Video  Viral</h2>
+            <a href="#" class="text-primary fw-semibold">View all</a>
+          </div>
+
+          <div class="viral-slider">
+
+            <article class="viral-card orbit orbit-left">
+              <div class="viral-img">
+                <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66">
+                <span class="viral-badge">Trending</span>
+              </div>
+              <div class="viral-body">
+                <h5>Dance Clip Breaks Internet</h5>
+                <div class="viral-meta">
+                  <span><i class="fas fa-eye"></i> 124K</span>
+                  <span><i class="fas fa-heart"></i> 9.4K</span>
+                </div>
+              </div>
+            </article>
+
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- sports -->
+<!-- business -->
+
+<section title="business">
+    <div class="container-fluid  mt-5 pt-2  mb-5 ">
+              <div class="row justify-content-center">
+                  <div class="col-11 ">
+
+
+      <div class="container-fluid my-5">
+          <div class="row g-4">
+              
+              <!-- LEFT : TODAY NEWS -->
+              <div class="col-lg-8">
+                  <div class="content-card">
+                      
+                      <h2 class="section-title">Business</h2>
+                      
+                      <!-- NEWS LIST -->
+                      <div class="d-flex flex-column gap-4">
+                          
+                          <!-- CARD 1 -->
+          <div class="news-card orbit orbit-left">
+              <div class="row g-3 align-items-center ">
+                  
+                  <!-- IMAGE LEFT -->
+                  <div class="col-4">
+                       <a href="">
+                           <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72" class="today-news-img" alt="News">
+                    </a>
+                </div>
+                
+                <!-- CONTENT RIGHT -->
+                <div class="col-8">
+                    <a href="">
+                        <span class="topic-tag">Technology</span>
+                    </a>
+                    <a href="" class="">
+                        
+                        <h4 class="news-title mt-2">
+                            AI Is Changing the World
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Artificial intelligence is impacting healthcare, finance,
+                            and automation globally.
+                        </p>
+                    </a>
+                    
+                    <div class="news-meta">
+                        <a href="">
+                            
+                            <span class="m-1 text-dark"><i class="fas fa-user"></i> Alex Morgan</span>
+                        </a>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.3K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 19.8K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- CARD 2 -->
+          <div class="news-card orbit orbit-left">
+              <div class="row g-3 align-items-center">
+                  
+                  <div class="col-4">
+                      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="today-news-img" alt="News">
+                    </div>
+                    
+                    <div class="col-8">
+                        <span class="topic-tag">Business</span>
+                        
+                        <h4 class="news-title mt-2">
+                            Markets React to New Policies
+                        </h4>
+                        
+                        <p class="news-excerpt">
+                            Investors respond after major global policy changes.
+                        </p>
+                        
+                        <div class="news-meta">
+                            <span class="m-1"><i class="fas fa-user"></i> Sarah Chen</span>
+                            <span class="m-1"><i class="fas fa-heart"></i> 980</span>
+                            <span class="m-1"><i class="fas fa-eye"></i> 12.1K</span>
+                            
+                            <button class="bookmark-btn">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+        
+        <!-- CARD 3 -->
+        <div class="news-card orbit orbit-left">
+            <div class="row g-3 align-items-center">
+                
+                <div class="col-4">
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7" class="today-news-img" alt="News">
+                </div>
+                
+                <div class="col-8">
+                    <span class="topic-tag">Health</span>
+                    
+                    <h4 class="news-title mt-2">
+                        Medical Breakthrough Announced
+                    </h4>
+                    
+                    <p class="news-excerpt">
+                        Scientists reveal promising new healthcare research.
+                    </p>
+                    
+                    <div class="news-meta">
+                        <span class="m-1"><i class="fas fa-user"></i> Maria Lopez</span>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.6K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 20.3K</span>
+                        
+                        <button class="bookmark-btn">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+<!-- RIGHT : TOP  10 Journalists   -->
+<div class="col-lg-4">
+
+    <!-- Top 10 Journalists - Compact Sidebar Version -->
+<section title="TopJournalists" class="mt-4">
+    <div class="content-card orbit orbit-left ">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="fw-bold mb-0">Top Journalists</h5>
+            <a href="#" class="text-primary small fw-semibold">View All</a>
+        </div>
+        
+        <!-- Journalists List -->
+        <div class="compact-journalists-list">
+            <!-- #1 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-badge rank-1">1</span>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Michael Thompson" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">Michael Thompson</h6>
+                        <small class="text-muted">Investigative</small>
+                    </div>
+                    <span class="rating-badge">
+                        <i class="fas fa-star text-warning"></i> 4.9
+                    </span>
+                </div>
+            </div>
+            
+            <!-- #2 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-badge rank-2">2</span>
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786" alt="Sarah Chen" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">Sarah Chen</h6>
+                        <small class="text-muted">Tech</small>
+                    </div>
+                    <span class="rating-badge">
+                        <i class="fas fa-star text-warning"></i> 4.8
+                    </span>
+                </div>
+            </div>
+            
+            <!-- #3 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-badge rank-3">3</span>
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" alt="David Rodriguez" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">David Rodriguez</h6>
+                        <small class="text-muted">Foreign Affairs</small>
+                    </div>
+                    <span class="rating-badge">
+                        <i class="fas fa-star text-warning"></i> 4.8
+                    </span>
+                </div>
+            </div>
+            
+            <!-- #4 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-number">4</span>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Emma Wilson" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">Emma Wilson</h6>
+                        <small class="text-muted">Climate</small>
+                    </div>
+                    <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                </div>
+            </div>
+            
+            <!-- #5 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-number">5</span>
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="James Lee" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">James Lee</h6>
+                        <small class="text-muted">Business</small>
+                    </div>
+                    <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                </div>
+            </div>
+            
+            <!-- #6 -->
+            <div class="compact-journalist-item">
+                <div class="d-flex align-items-center py-2">
+                    <span class="rank-number">6</span>
+                    <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef" alt="Maria Garcia" class="compact-journalist-img">
+                    <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                        <h6 class="mb-0 fw-bold text-truncate">Maria Garcia</h6>
+                        <small class="text-muted">Health</small>
+                    </div>
+                    <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                </div>
+            </div>
+            
+            <!-- Show More (Collapsible) -->
+            <div class="collapse" id="compactMoreJournalists">
+                <!-- #7 -->
+                <div class="compact-journalist-item">
+                    <div class="d-flex align-items-center py-2">
+                        <span class="rank-number">7</span>
+                        <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128" alt="Robert Kim" class="compact-journalist-img">
+                        <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                            <h6 class="mb-0 fw-bold text-truncate">Robert Kim</h6>
+                            <small class="text-muted">Legal</small>
+                        </div>
+                        <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                    </div>
+                </div>
+                
+                <!-- #8 -->
+                <div class="compact-journalist-item">
+                    <div class="d-flex align-items-center py-2">
+                        <span class="rank-number">8</span>
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7" alt="Lisa Wong" class="compact-journalist-img">
+                        <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                            <h6 class="mb-0 fw-bold text-truncate">Lisa Wong</h6>
+                            <small class="text-muted">Education</small>
+                        </div>
+                        <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                    </div>
+                </div>
+                
+                <!-- #9 -->
+                <div class="compact-journalist-item">
+                    <div class="d-flex align-items-center py-2">
+                        <span class="rank-number">9</span>
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="Thomas O'Brien" class="compact-journalist-img">
+                        <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                            <h6 class="mb-0 fw-bold text-truncate">Thomas O'Brien</h6>
+                            <small class="text-muted">Sports</small>
+                        </div>
+                        <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                    </div>
+                </div>
+                
+                <!-- #10 -->
+                <div class="compact-journalist-item">
+                    <div class="d-flex align-items-center py-2">
+                        <span class="rank-number">10</span>
+                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" alt="Sophia Patel" class="compact-journalist-img">
+                        <div class="ms-2 flex-grow-1" style="min-width: 0;">
+                            <h6 class="mb-0 fw-bold text-truncate">Sophia Patel</h6>
+                            <small class="text-muted">Arts</small>
+                        </div>
+                        <button class="btn btn-xs btn-outline-primary follow-btn-xs">Follow</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Show More Button -->
+            <div class="text-center mt-2">
+                <a class="text-primary small fw-semibold" data-bs-toggle="collapse" href="#compactMoreJournalists" role="button" aria-expanded="false">
+                    Show More <i class="fas fa-chevron-down ms-1 small"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Compact Journalists List */
+    .compact-journalists-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    .compact-journalists-list::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .compact-journalists-list::-webkit-scrollbar-track {
+        background: var(--tertiary-dark);
+    }
+    
+    .compact-journalists-list::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+    }
+    
+    .compact-journalist-item {
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.5rem 0;
+    }
+    
+    .compact-journalist-item:last-child {
+        border-bottom: none;
+    }
+    
+    /* Rank Badges */
+    .rank-badge {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+    
+    .rank-1 {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #000;
+        font-weight: 800;
+    }
+    
+    .rank-2 {
+        background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+        color: #000;
+    }
+    
+    .rank-3 {
+        background: linear-gradient(135deg, #CD7F32, #A0522D);
+        color: #fff;
+    }
+    
+    .rank-number {
+        font-weight: 600;
+        color: var(--accent-teal);
+        min-width: 28px;
+        text-align: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+    
+    /* Profile Images */
+    .compact-journalist-img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--border-color);
+        flex-shrink: 0;
+    }
+    
+    /* Rating Badge */
+    .rating-badge {
+        background: var(--tertiary-dark);
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    /* Follow Button */
+    .btn-xs {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+        border-radius: 12px;
+        min-width: 60px;
+        flex-shrink: 0;
+    }
+    
+    /* Text Truncation */
+    .compact-journalist-item h6 {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+    
+    .compact-journalist-item small {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    /* Hover Effects */
+    .compact-journalist-item:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: 8px;
+        padding: 0.5rem;
+        margin: 0 -0.5rem;
+    }
+    
+    /* For col-lg-4 sizing */
+    @media (max-width: 992px) {
+        .compact-journalist-img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .rank-badge, .rank-number {
+            min-width: 24px;
+            font-size: 0.85rem;
+        }
+        
+        .btn-xs {
+            min-width: 55px;
+            padding: 0.15rem 0.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Compact follow button functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Follow buttons
+        document.querySelectorAll('.follow-btn-xs').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent === 'Follow') {
+                    this.textContent = 'Following';
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-outline-success');
+                } else {
+                    this.textContent = 'Follow';
+                    this.classList.remove('btn-outline-success');
+                    this.classList.add('btn-outline-primary');
+                }
+            });
+        });
+        
+        // Show more/less functionality
+        const showMoreLink = document.querySelector('[href="#compactMoreJournalists"]');
+        if (showMoreLink) {
+            showMoreLink.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (this.getAttribute('aria-expanded') === 'true') {
+                    this.innerHTML = 'Show More <i class="fas fa-chevron-down ms-1 small"></i>';
+                } else {
+                    this.innerHTML = 'Show Less <i class="fas fa-chevron-up ms-1 small"></i>';
+                }
+            });
+        }
+    });
+</script>
+  <div class="mt-5 pt-5">
+  <div class="content-card orbit orbit-left">
+
+    <h5 class="fw-bold mb-3">Journalists Suggestions</h5>
+
+    <div class="friends-list">
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786" class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Emily Watson</div>
+          <div class="friend-role">Tech Enthusiast</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">David Kim</div>
+          <div class="friend-role">Market Analyst</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- Journalists  -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Sophia Brown</div>
+          <div class="friend-role">Health Blogger</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+      <!-- FRIEND -->
+      <div class="friend-item">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" class="friend-avatar">
+
+        <div class="friend-info">
+          <div class="friend-name">Michael Lee</div>
+          <div class="friend-role">Science Writer</div>
+        </div>
+
+        <button class="action-btn btn-follow">
+          Follow
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div></div></div>
+</section>
+<!-- business -->
+ <!--  -->
+<section title="Audio">
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <div class="content-card">
+
+          <!-- SECTION TITLE -->
+          <h2 class="section-title">Audio</h2>
+
+          <!-- AUDIO TABS -->
+          <div class="showsha-tabs mb-4">
+            <button class="showsha-tab active" data-target="audio-podcast">Podcasts</button>
+            <button class="showsha-tab" data-target="audio-story">Audio Stories</button>
+            <button class="showsha-tab" data-target="audio-interview">Interviews</button>
+          </div>
+
+          <!-- TAB CONTENT -->
+          <div class="showsha-content">
+
+            <!-- PODCASTS -->
+            <div class="showsha-pane active" id="audio-podcast">
+              <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4 orbit orbit-left">
+                  <div class="news-card">
+                    <span class="topic-tag">Podcast</span>
+                    <h5 class="news-title mt-2">Future of AI</h5>
+                    <p class="news-excerpt">
+                      Experts discuss how AI is shaping the world.
+                    </p>
+
+                    <audio controls class="w-100 mt-2">
+                      <source src="audio/ai.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="news-meta mt-2">
+                      <span><i class="fas fa-user"></i> Alex Morgan</span>
+                      <span><i class="fas fa-clock"></i> 12:45</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- AUDIO STORIES -->
+            <div class="showsha-pane" id="audio-story">
+              <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4 orbit orbit-left">
+                  <div class="news-card">
+                    <span class="topic-tag">Story</span>
+                    <h5 class="news-title mt-2">Midnight Train</h5>
+                    <p class="news-excerpt">
+                      A suspenseful short audio story.
+                    </p>
+
+                    <audio controls class="w-100 mt-2">
+                      <source src="audio/story.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="news-meta mt-2">
+                      <span><i class="fas fa-user"></i> Sarah Chen</span>
+                      <span><i class="fas fa-clock"></i> 8:20</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- INTERVIEWS -->
+            <div class="showsha-pane" id="audio-interview">
+              <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4 orbit orbit-left">
+                  <div class="news-card">
+                    <span class="topic-tag">Interview</span>
+                    <h5 class="news-title mt-2">Startup Founders Talk</h5>
+                    <p class="news-excerpt">
+                      Inside stories from successful founders.
+                    </p>
+
+                    <audio controls class="w-100 mt-2">
+                      <source src="audio/interview.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="news-meta mt-2">
+                      <span><i class="fas fa-user"></i> Maria Lopez</span>
+                      <span><i class="fas fa-clock"></i> 15:10</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!--  -->
+<section title="Audio">
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <div class="content-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title mb-0"> <i class="bi bi-headphones"></i> Viral Audio Podcasts & Stories</h2>
+            <a href="#" class="text-primary fw-semibold">View all</a>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- AUDIO CARD -->
+            <div class="col-md-6 col-lg-4 orbit orbit-left">
+              <div class="audio-card">
+                <div class="audio-header">
+                  <span class="audio-tag podcast">Podcast</span>
+                  <span class="audio-duration">12:45</span>
+                </div>
+
+                <h5 class="audio-title">The Future of AI</h5>
+                <p class="audio-desc">
+                  Experts discuss how AI is reshaping industries worldwide.
+                </p>
+
+                <audio controls class="w-100">
+                  <source src="audio/ai-podcast.mp3" type="audio/mpeg">
+                </audio>
+
+                <div class="audio-meta">
+                  <span><i class="fas fa-user"></i> Alex Morgan</span>
+                  <span><i class="fas fa-heart"></i> 1.2K</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AUDIO STORY -->
+            <div class="col-md-6 col-lg-4 orbit orbit-left">
+              <div class="audio-card">
+                <div class="audio-header">
+                  <span class="audio-tag story">Story</span>
+                  <span class="audio-duration">8:20</span>
+                </div>
+
+                <h5 class="audio-title">Midnight Train</h5>
+                <p class="audio-desc">
+                  A suspenseful short audio story narrated under the stars.
+                </p>
+
+                <audio controls class="w-100">
+                  <source src="audio/story-midnight.mp3" type="audio/mpeg">
+                </audio>
+
+                <div class="audio-meta">
+                  <span><i class="fas fa-user"></i> Sarah Chen</span>
+                  <span><i class="fas fa-heart"></i> 860</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AUDIO CARD -->
+            <div class="col-md-6 col-lg-4 orbit orbit-left">
+              <div class="audio-card">
+                <div class="audio-header">
+                  <span class="audio-tag podcast">Podcast</span>
+                  <span class="audio-duration">15:10</span>
+                </div>
+
+                <h5 class="audio-title">Politics Weekly</h5>
+                <p class="audio-desc">
+                  A weekly breakdown of the most important political events.
+                </p>
+
+                <audio controls class="w-100">
+                  <source src="audio/politics-weekly.mp3" type="audio/mpeg">
+                </audio>
+
+                <div class="audio-meta">
+                  <span><i class="fas fa-user"></i> Maria Lopez</span>
+                  <span><i class="fas fa-heart"></i> 2.1K</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!--  -->
+<!-- ALL WITH TOPIC if news TOPIC == TOPIC the show topic news only 10  -->
+ <section title="allnews"  >
+          <div class="container-fluid  mt-5 pt-2  mb-5 ">
+              <div class="row justify-content-center">
+             <div class="col-11">
+<div class="content-card ">
+                      
+                      <h2 class="section-title">TOPIC name</h2>
+                      
+                      <!-- NEWS LIST -->
+                      <div class="d-flex flex-column gap-4">
+                          <div class="container-fluid ">
+                            <div class="row justify-content-evenly">
+
+                                <!-- card1 -->
+                                <div class="col-md-4 mb-4 m-2 orbit orbit-left orbit orbit-left">
+                                    <div class="showsha-news-card news-card" style="position:relative; overflow:hidden;">
+
+  <!-- IMAGE -->
+   <a href="">
+
+       <img class="rounded" src="https://images.unsplash.com/photo-1517602302552-471fe67acf66" alt="News Image" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+    </a>
+
+  <!-- TOPIC TAG ON IMAGE (TOP LEFT) -->
+   <a href="">
+
+       <span class="topic-tag" style="
+      position:absolute;
+      top:10%;
+      left:10%;
+      z-index:2;
+      ">
+  Bollywood
+</span>
+</a>
+
+  <!-- CARD BODY -->
+  <div class="showsha-news-body">
+    <a href="">
+
+        <h5 class="news-title">
+            Star Kid Makes Grand Debut
+        </h5>
+        
+        <p class="news-excerpt">
+            The debut film is already creating strong buzz in the industry.
+        </p>
+    </a>
+
+    <div class="news-meta">
+                        <a href="">
+                            
+                            <span class="m-1 text-dark"><i class="fas fa-user"></i> Alex Morgan</span>
+                        </a>
+                        <span class="m-1"><i class="fas fa-heart"></i> 1.3K</span>
+                        <span class="m-1"><i class="fas fa-eye"></i> 19.8K</span>
+                        
+                        <button class="bookmark-btn active">
+                            <i class="fa-bookmark fas"></i>
+                        </button>
+                    </div>
+  </div>
+</div>
+                                </div>
+                                <!-- card1 -->
+                            </div>
+                        </div>
+
+        
+    </div>
+</div>
+ </div></div></div></section>
+<!-- ALL WITH TOPIC -->
+
+<div class="m-5 p-5"></div>
+
+
+
+
+
+
+</main>
+
+
+
+<!-- 2601 -->
+<!-- Footer Section -->
+<footer class="footer-section">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <!-- Main Footer Content -->
+                <div class="footer-main">
+                    <!-- Brand Logo -->
+                    <div class="footer-brand">
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="225">
+  <defs>
+    <!-- Neon glow (white) -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- World Globe Icon -->
+  <g transform="translate(30, 20)" fill="none" stroke="#ffffff">
+    <circle cx="30" cy="40" r="35" stroke-width="2.5" opacity="0.9"/>
+
+    <!-- Grid -->
+    <g stroke-width="1" opacity="0.7">
+      <path d="M30,5 Q50,40 30,75"/>
+      <path d="M30,5 Q10,40 30,75"/>
+      <ellipse cx="30" cy="40" rx="20" ry="35"/>
+      <ellipse cx="30" cy="40" rx="12" ry="25"/>
+    </g>
+
+    <!-- Continents -->
+    <g fill="#ffffff" opacity="0.6" stroke="none">
+      <path d="M15,25 Q20,15 25,20 Q30,25 28,35 Q25,40 20,35 Q15,30 15,25"/>
+      <path d="M40,25 Q45,20 50,25 Q48,35 45,40 Q40,45 38,35 Q37,30 40,25"/>
+      <path d="M45,45 Q50,50 55,55 Q52,60 48,58 Q45,55 43,50 Q42,47 45,45"/>
+    </g>
+
+    <!-- Data rings -->
+    <g stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8">
+      <circle cx="30" cy="40" r="25">
+        <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="30" cy="40" r="15">
+        <animate attributeName="r" values="15;18;15" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+    </g>
+
+    <!-- Orbiting dots -->
+    <circle cx="30" cy="15" r="3" fill="#ffffff">
+      <animateTransform attributeName="transform" type="rotate" from="0 30 40" to="360 30 40" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="45" cy="40" r="3" fill="#ffffff">
+      <animateTransform attributeName="transform" type="rotate" from="120 30 40" to="480 30 40" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="65" r="3" fill="#ffffff">
+      <animateTransform attributeName="transform" type="rotate" from="240 30 40" to="600 30 40" dur="10s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Center badge -->
+    <circle cx="30" cy="40" r="12" fill="#ffffff" opacity="0.9"/>
+    <text x="30" y="44" text-anchor="middle" font-size="8" font-weight="700" fill="#000">24/7</text>
+  </g>
+
+  <!-- Text -->
+  <g transform="translate(80, 0)">
+    <text x="0" y="52" font-size="46" font-weight="800" fill="#ffffff">
+      News24x7
+    </text>
+    <text x="0" y="52" font-size="46" font-weight="800" fill="#ffffff" opacity="0.3" filter="url(#neonGlow)">
+      News24x7
+    </text>
+
+    <g transform="translate(0,70)">
+      <rect x="0" y="0" width="280" height="2" fill="#ffffff" opacity="0.4"/>
+      <circle cx="30" cy="0" r="3" fill="#ffffff">
+        <animate attributeName="cx" values="30;280;30" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="100" cy="0" r="2" fill="#ffffff">
+        <animate attributeName="cx" values="100;280;100" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="180" cy="0" r="2" fill="#ffffff">
+        <animate attributeName="cx" values="180;280;180" dur="7s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Satellite -->
+  <g transform="translate(340, 40)" stroke="#ffffff" fill="none">
+    <circle cx="0" cy="0" r="15" stroke-width="2"/>
+    <path d="M-12,0 A12,12 0 0,1 12,0 L0,20 Z" fill="#ffffff" opacity="0.7"/>
+
+    <circle cx="0" cy="0" r="25" stroke-width="1" opacity="0.3">
+      <animate attributeName="r" values="25;30;25" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="20" stroke-width="1" opacity="0.5">
+      <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+  </g>
+</svg>
+
+                        </a>
+                    </div>
+                    
+                    <!-- Footer Columns -->
+                    <div class="footer-columns">
+                        <!-- Column 1: Quick Links -->
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">Quick Links</h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Home</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Trending News</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Today's Headlines</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Politics</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Business</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Column 2: Categories -->
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">Categories</h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fas fa-microchip me-2"></i> Technology</a></li>
+                                <li><a href="#"><i class="fas fa-chart-line me-2"></i> Business</a></li>
+                                <li><a href="#"><i class="fas fa-landmark me-2"></i> Politics</a></li>
+                                <li><a href="#"><i class="fas fa-heartbeat me-2"></i> Health</a></li>
+                                <li><a href="#"><i class="fas fa-film me-2"></i> Entertainment</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Column 3: Company -->
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">Company</h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fas fa-info-circle me-2"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-newspaper me-2"></i> Our Journalists</a></li>
+                                <li><a href="#"><i class="fas fa-shield-alt me-2"></i> Privacy Policy</a></li>
+                                <li><a href="#"><i class="fas fa-file-contract me-2"></i> Terms of Service</a></li>
+                                <li><a href="#"><i class="fas fa-envelope me-2"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Column 4: Stay Connected -->
+                        <div class="footer-column d-none">
+                            <h5 class="footer-column-title">Stay Connected</h5>
+                            <div class="footer-social">
+                                <p class="footer-desc mb-3">Get the latest news delivered to your inbox</p>
+                                
+                                <!-- Newsletter Subscription -->
+                                <div class="newsletter-subscription">
+                                    <div class="input-group mb-3">
+                                        <input type="email" class="form-control" placeholder="Your email address">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Social Media -->
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Divider -->
+                <div class="footer-divider"></div>
+                
+                <!-- Bottom Footer -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-left">
+                        <p class="copyright">&copy; 2024 THEAM News Platform. All rights reserved.</p>
+                    </div>
+                    
+                    <div class="footer-bottom-right">
+                        <div class="footer-extra-links">
+                            <a href="#" class="footer-extra-link">Cookie Policy</a>
+                            <a href="#" class="footer-extra-link">Advertise With Us</a>
+                            <a href="#" class="footer-extra-link">Careers</a>
+                            <a href="#" class="footer-extra-link">Sitemap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+</footer>
+
+<style>
+    /* Footer Section */
+    .footer-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #ffffff;
+        padding: 3rem 0 1.5rem;
+        margin-top: 3rem;
+        position: relative;
+    }
+    
+    /* Main Footer */
+    .footer-main {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    /* Footer Brand */
+    .footer-brand {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .footer-brand .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 1.8rem;
+    }
+    
+    .footer-brand .logo-text {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-top: 0.5rem;
+    }
+    
+    .footer-tagline {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+    
+    /* Footer Columns */
+    .footer-columns {
+        flex: 3;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+    
+    .footer-column-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        color: #ffffff;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+    
+    .footer-column-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+    }
+    
+    /* Footer Links */
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: var(--accent-teal);
+        transform: translateX(5px);
+    }
+    
+    .footer-links a i {
+        font-size: 0.8rem;
+        width: 16px;
+    }
+    
+    /* Stay Connected Column */
+    .footer-desc {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .newsletter-subscription .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        border-radius: 8px 0 0 8px;
+        border-right: none;
+        padding: 0.75rem 1rem;
+    }
+    
+    .newsletter-subscription .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .newsletter-subscription .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--accent-teal);
+        box-shadow: none;
+        color: #ffffff;
+    }
+    
+    .newsletter-subscription .btn {
+        background: var(--gradient-primary);
+        border: none;
+        border-radius: 0 8px 8px 0;
+        padding: 0.75rem 1.25rem;
+    }
+    
+    .newsletter-subscription .btn:hover {
+        background: var(--gradient-secondary);
+    }
+    
+    /* Social Icons */
+    .social-icons {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background: var(--gradient-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
+    
+    /* Footer Divider */
+    .footer-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+        margin: 1.5rem 0;
+    }
+    
+    /* Footer Bottom */
+    .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+    }
+    
+    .copyright {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+    
+    .footer-extra-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    .footer-extra-link {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-extra-link:hover {
+        color: var(--accent-teal);
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: var(--gradient-primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+    
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .back-to-top:hover {
+        background: var(--gradient-secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .footer-main {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .footer-brand {
+            text-align: center;
+        }
+        
+        .footer-brand .logo-icon {
+            margin: 0 auto;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .footer-extra-links {
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .footer-columns {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .social-icons {
+            justify-content: center;
+        }
+        
+        .newsletter-subscription {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .footer-columns {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-extra-links {
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .back-to-top {
+            width: 45px;
+            height: 45px;
+            bottom: 70px;
+            right: 15px;
+        }
+    }
+    
+    /* Footer Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .footer-section {
+        animation: fadeInUp 0.8s ease;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Back to top functionality
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-subscription');
+        const newsletterInput = newsletterForm.querySelector('input');
+        const newsletterBtn = newsletterForm.querySelector('button');
+        
+        newsletterBtn.addEventListener('click', function() {
+            const email = newsletterInput.value.trim();
+            
+            if (!email) {
+                newsletterInput.focus();
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showToast('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate subscription
+            newsletterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            newsletterBtn.disabled = true;
+            
+            setTimeout(() => {
+                newsletterBtn.innerHTML = '<i class="fas fa-check"></i>';
+                newsletterInput.value = '';
+                showToast('Successfully subscribed to newsletter!', 'success');
+                
+                setTimeout(() => {
+                    newsletterBtn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                    newsletterBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Email validation
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Toast notification
+        function showToast(message, type) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `footer-toast footer-toast-${type}`;
+            toast.innerHTML = `
+                <span>${message}</span>
+                <button class="footer-toast-close">&times;</button>
+            `;
+            
+            // Add styles
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                min-width: 300px;
+                max-width: 400px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+            `;
+            
+            // Close button
+            const closeBtn = toast.querySelector('.footer-toast-close');
+            closeBtn.style.cssText = `
+                background: transparent;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-left: 1rem;
+            `;
+            
+            // Add to document
+            document.body.appendChild(toast);
+            
+            // Close functionality
+            closeBtn.addEventListener('click', () => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            });
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // Add animation keyframes for toast
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Footer link hover effects
+        const footerLinks = document.querySelectorAll('.footer-links a, .footer-extra-link');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+    });
+</script>
+   
+
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <div class="nav-container">
@@ -436,19 +4186,29 @@
                     <div class="tab-content active" id="profile-info-tab">
                         <div class="profile-header">
                             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Profile" class="profile-avatar">
-                            <h3>Jordan Smith</h3>
-                            <p class="text-muted" style="color: var(--accent-teal); font-size: 1.1rem; margin-top: 0.5rem;">Senior News Analyst & Contributor</p>
+                            <h3>
+                                {{userdb.username}}
+                            </h3>
+                            <p class="text-muted" style="color: var(--accent-teal); font-size: 1.1rem; margin-top: 0.5rem;">
+                             {{userdb.email}}
+                            </p>
                             <div class="profile-stats">
                                 <div class="stat-item">
-                                    <div class="stat-value">28</div>
+                                    <div class="stat-value">
+                                        {{Following}}
+                                    </div>
                                     <div class="stat-label">Following</div>
                                 </div>
                                 <div class="stat-item">
-                                    <div class="stat-value">3.2K</div>
+                                    <div class="stat-value">
+                                        {{Followers}}
+                                    </div>
                                     <div class="stat-label">Followers</div>
                                 </div>
                                 <div class="stat-item">
-                                    <div class="stat-value">156</div>
+                                    <div class="stat-value">
+                                        {{Bookmarks}}
+                                    </div>
                                     <div class="stat-label">Bookmarks</div>
                                 </div>
                             </div>
@@ -524,7 +4284,7 @@
                             <i class="fas fa-chevron-right" style="color: var(--accent-teal);"></i>
                         </div>
                         
-                        <div class="list-item-professional animate-list-item">
+                        <div class="list-item-professional animate-list-item d-none">
                             <div class="item-icon-professional">
                                 <i class="fas fa-moon"></i>
                             </div>
@@ -657,7 +4417,14 @@
             </div>
         </div>
     </div>
-<!-- navbar here -->
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
 <script>
 $('.viral-slider').slick({
   slidesToShow: 5,
@@ -698,6 +4465,9 @@ $('.viral-slider').slick({
     });
   });
 </script>
+
+
+
 <script>
   $('.featured-slider').slick({
     dots: true,
@@ -717,7 +4487,11 @@ $('.viral-slider').slick({
     icon.classList.toggle('far');
   });
 </script>
-<script>
+
+
+
+
+    <script>
 document.querySelectorAll('.topic-chip').forEach(chip => {
   chip.addEventListener('click', () => {
     document.querySelectorAll('.topic-chip')
@@ -726,7 +4500,8 @@ document.querySelectorAll('.topic-chip').forEach(chip => {
   });
 });
 </script>
-<script>
+
+    <script>
         $(document).ready(function() {
             // Set active navigation item
             $('.nav-item').click(function() {
@@ -898,8 +4673,52 @@ document.querySelectorAll('.topic-chip').forEach(chip => {
                 }
             );
         });
-</script>
+    </script>
+    <style>
+        /* ===== ORBIT REVEAL (WORLD UNIQUE) ===== */
+.orbit {
+  opacity: 0;
+  transform: translateY(50px) scale(0.97);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.orbit.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Direction flavors */
+.orbit-left {
+  transform: translateX(-50px) scale(0.97);
+}
+
+.orbit-right {
+  transform: translateX(50px) scale(0.97);
+}
+
+    </style>
+
+
+<!-- Loader  -->
 <script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loading");
+
+  setTimeout(() => {
+    loader.classList.add("hidden");
+
+    // Remove from DOM after fade-out
+    setTimeout(() => loader.remove(), 500);
+  }, 1500); // loader stays for 1.5 seconds
+});
+</script>
+    <script>
 (function () {
   const elements = document.querySelectorAll(".orbit");
 
@@ -927,4 +4746,6 @@ document.querySelectorAll('.topic-chip').forEach(chip => {
   elements.forEach(el => observer.observe(el));
 })();
 </script>
-{% endblock body %}
+
+</body>
+</html>

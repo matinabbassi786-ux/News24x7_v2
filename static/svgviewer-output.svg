@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="225" height="">
+  <defs>
+    <!-- Futuristic gradient -->
+    <linearGradient id="futurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007CF0"></stop>
+      <stop offset="50%" style="stop-color:#00DFD8"></stop>
+      <stop offset="100%" style="stop-color:#7928CA"></stop>
+    </linearGradient>
+    
+    <!-- Neon effect -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- World Globe Icon -->
+  <g transform="translate(30, 20)">
+    <!-- Globe outer circle -->
+    <circle cx="30" cy="40" r="35" fill="none" stroke="url(#futurGrad)" stroke-width="2.5" opacity="0.9"></circle>
+    
+    <!-- Globe grid lines -->
+    <g stroke="url(#futurGrad)" stroke-width="1" opacity="0.7">
+      <!-- Longitude lines -->
+      <path d="M30,5 Q50,40 30,75" fill="none"></path>
+      <path d="M30,5 Q10,40 30,75" fill="none"></path>
+      <!-- Latitude lines -->
+      <ellipse cx="30" cy="40" rx="20" ry="35" fill="none"></ellipse>
+      <ellipse cx="30" cy="40" rx="12" ry="25" fill="none"></ellipse>
+    </g>
+    
+    <!-- Continents (simplified) -->
+    <g fill="url(#futurGrad)" opacity="0.6">
+      <!-- Americas -->
+      <path d="M15,25 Q20,15 25,20 Q30,25 28,35 Q25,40 20,35 Q15,30 15,25"></path>
+      <!-- Europe/Africa -->
+      <path d="M40,25 Q45,20 50,25 Q48,35 45,40 Q40,45 38,35 Q37,30 40,25"></path>
+      <!-- Asia/Australia -->
+      <path d="M45,45 Q50,50 55,55 Q52,60 48,58 Q45,55 43,50 Q42,47 45,45"></path>
+    </g>
+    
+    <!-- Data network overlay -->
+    <g stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8">
+      <circle cx="30" cy="40" r="25">
+        <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"></animate>
+      </circle>
+      <circle cx="30" cy="40" r="15">
+        <animate attributeName="r" values="15;18;15" dur="3s" repeatCount="indefinite" begin="1s"></animate>
+      </circle>
+    </g>
+    
+    <!-- Data points moving around globe -->
+    <circle cx="30" cy="15" r="3" fill="#FF0080">
+      <animateTransform attributeName="transform" type="rotate" from="0 30 40" to="360 30 40" dur="8s" repeatCount="indefinite"></animateTransform>
+    </circle>
+    <circle cx="45" cy="40" r="3" fill="#00DFD8">
+      <animateTransform attributeName="transform" type="rotate" from="120 30 40" to="480 30 40" dur="6s" repeatCount="indefinite"></animateTransform>
+    </circle>
+    <circle cx="30" cy="65" r="3" fill="#7928CA">
+      <animateTransform attributeName="transform" type="rotate" from="240 30 40" to="600 30 40" dur="10s" repeatCount="indefinite"></animateTransform>
+    </circle>
+    
+    <!-- 24/7 indicator in center -->
+    <circle cx="30" cy="40" r="12" fill="#FFFFFF" opacity="0.9"></circle>
+    <text x="30" y="44" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="url(#futurGrad)">24/7</text>
+  </g>
+  
+  <!-- Typography (keep original) -->
+  <g transform="translate(80, 0)">
+    <!-- Main text with depth -->
+    <text x="0" y="52" font-family="'Montserrat', 'Inter', sans-serif" font-size="46" font-weight="800" letter-spacing="-1" fill="#000">
+      News24x7
+      <animate attributeName="fill" values="#000;#111;#000" dur="10s" repeatCount="indefinite"></animate>
+    </text>
+    
+    <!-- Glow effect -->
+    <text x="0" y="52" font-family="'Montserrat', 'Inter', sans-serif" font-size="46" font-weight="800" letter-spacing="-1" fill="url(#futurGrad)" opacity="0.3" filter="url(#neonGlow)">News24x7</text>
+    
+    <!-- Data stream visualization -->
+    <g transform="translate(0, 70)">
+      <rect x="0" y="0" width="280" height="2" fill="#E5E7EB"></rect>
+      <!-- Data points -->
+      <circle cx="30" cy="0" r="3" fill="#007CF0">
+        <animate attributeName="cx" values="30;280;30" dur="8s" repeatCount="indefinite"></animate>
+      </circle>
+      <circle cx="100" cy="0" r="2" fill="#00DFD8">
+        <animate attributeName="cx" values="100;280;100" dur="6s" repeatCount="indefinite"></animate>
+      </circle>
+      <circle cx="180" cy="0" r="2" fill="#7928CA">
+        <animate attributeName="cx" values="180;280;180" dur="7s" repeatCount="indefinite"></animate>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Satellite dish element (keep original) -->
+  <g transform="translate(340, 40)">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="url(#futurGrad)" stroke-width="2"></circle>
+    <path d="M-12,0 A12,12 0 0,1 12,0 L0,20 Z" fill="url(#futurGrad)" opacity="0.7"></path>
+    
+    <!-- Signal waves -->
+    <g>
+      <circle cx="0" cy="0" r="25" fill="none" stroke="url(#futurGrad)" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" values="25;30;25" dur="2s" repeatCount="indefinite"></animate>
+      </circle>
+      <circle cx="0" cy="0" r="20" fill="none" stroke="url(#futurGrad)" stroke-width="1" opacity="0.5">
+        <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite" begin="0.5s"></animate>
+      </circle>
+    </g>
+  </g>
+</svg>

@@ -45,6 +45,20 @@ INSTALLED_APPS = [
     'import_export', # added for import-export functionality
     'django.contrib.sites',  # <-- Add this
     'robots',  # your app for robots.txt
+    # MY APPS
+    "API",
+    "Articles",
+    "Customer",
+    "Home",
+    "Journalist",
+    "Manager",
+    "Task",
+    
+    "Translate",
+       "health_check",          # required
+    "health_check.db",       # database check
+    "health_check.cache",    # cache check
+    "health_check.storage",  # storage check
 ]
 
 MIDDLEWARE = [

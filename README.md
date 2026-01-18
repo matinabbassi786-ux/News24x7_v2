@@ -19,5 +19,8 @@ This website has been specially created as part of a project to showcase how new
 - pip install django-background-tasks
 - pip install mysqlclient
 - pip install django-import-export
+-  pip install django-cors-headers
 - conda env list
+- pip install django-autoslug
+- pip install django-health-check
 - conda activate myenv

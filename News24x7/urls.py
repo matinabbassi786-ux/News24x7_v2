@@ -20,11 +20,20 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
+from django.shortcuts import render,redirect
+from django.http import HttpResponse
 
+def index(request):
+    if request.user.is_authenticated:
+        return redirect(f'HomePage/{request.user.username}/{request.user.id}/')
+    return HttpResponse("Welcome to News24x7!")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('robots.txt', include('robots.urls'))
+    path('robots.txt', include('robots.urls')),
+    path('', index, name='index'),
+     path("healthcheck/", include("health_check.urls")),
+     path('HomePage', include('Home.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
